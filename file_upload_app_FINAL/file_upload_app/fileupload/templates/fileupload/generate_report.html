@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EPB MAIN PAGE</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #e1e1f5;
+      }
+
+      .sidebar {
+        height: 100%;
+        width: 250px;
+        background-color: #2c3e50;
+        position: fixed;
+        left: 0;
+        top: 0;
+        padding-top: 80px; /* Adjust this value based on your header's height */
+        overflow-x: hidden;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .sidebar a {
+        padding: 15px 20px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        display: block;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .sidebar a:hover {
+        background-color: #34495e;
+      }
+
+      .sidebar a.active {
+        background-color: #3498db; /* Different background color */
+        color: white; /* Ensure text is readable */
+        font-weight: bold; /* Make the text bold */
+      }
+
+      .sideBarHeader {
+        color: white;
+        display: flex;
+        border-bottom: 2px solid #34495e;
+        padding-bottom: 20px; /* Padding */
+        margin-bottom: 20px;
+      }
+
+      .sideBarHeader img {
+        width: 80px; /* Adjusted width */
+        height: 80px; /* Added height for a square logo */
+        border-radius: 50%; /* Circular logo */
+        object-fit: cover;
+        margin-right: 15px;
+        margin-left: 20px;
+      }
+
+      .logout {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 250px;
+        padding: 20px;
+        background-color: #ecf0f1;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .header img {
+        height: 50px;
+        margin-right: 20px;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 24px;
+        text-transform: uppercase;
+        color: #2c3e50;
+      }
+
+      .content-container {
+        margin-left: 250px;
+        height: calc(100vh - 80px); /* Adjust this value based on your header's height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
+        height: 80%;
+      }
+
+      .content {
+        padding: 30px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+        width: 100%;
+        height: 80%;
+      }
+
+      .content h2 {
+        font-size: 30px;
+        margin-bottom: 10px;
+        color: #34495e;
+      }
+
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      .form-group{
+        font-size: 20px;
+        color: #233140;
+      }
+
+      .input-container {
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+      .input-container label {
+        margin-right: 10px;
+        font-weight: bold;
+        color: #34495e;
+        display: inline-block; /* Display label inline */
+        margin-bottom: 0; /* Remove any bottom margin */
+      }
+
+      .input-container select {
+        padding: 15px; /* Increase padding for better visibility */
+        border-radius: 10px;
+        border: 2px solid #3498db;
+        font-size: 16px;
+        background-color: white;
+        appearance: none; /* Remove default arrow */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEuMDAwNDQgNkw3LjAwMDEgMTIuMDAwMSAxMyAwIiBzdHJva2U9IiMzNDk4REIiIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4K');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        width: 100%; /* Make select box full width */
+        box-sizing: border-box; /* Include padding and border in width */
+      }
+
+      .input-container select::-ms-expand {
+        display: none; /* Remove default arrow in IE */
+      }
+
+      .nav-links {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .nav-links li {
+        margin-bottom: 15px; /* Increased margin */
+      }
+
+      .nav-links a {
+        color: #ecf0f1;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: 15px 20px; /* Increased padding */
+        border-radius: 5px;
+        transition: background 0.3s, color 0.3s; /* Smooth transitions */
+      }
+
+      .nav-links a.active,
+      .nav-links a:hover {
+        background-color: #2980b9;
+        color: #fff;
+      }
+
+      .filter-area {
+        margin-top: 40px;
+        margin-bottom: 50px;
+      }
+
+      .filter-button {
+        background-color: #4caf50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      .filter-button:hover {
+        background-color: #45a049;
+      }
+
+      select {
+        width: 100%;
+        padding: 15px;
+        border-radius: 10px;
+        border: 2px solid #3498db;
+        font-size: 16px;
+        background-color: white;
+        appearance: none; /* Remove default arrow */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEuMDAwNDQgNkw3LjAwMDEgMTIuMDAwMSAxMyAwIiBzdHJva2U9IiMzNDk4REIiIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4K');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+      }
+
+      select::-ms-expand {
+        display: none; /* Remove default arrow in IE */
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#report-name").change(function () {
+          var reportName = $(this).val();
+          $.ajax({
+            url: '{% url "get_batch_names" %}',
+            data: {
+              report_name: reportName,
+            },
+            success: function (data) {
+              var batchDropdown = $("#batch-name");
+              batchDropdown.empty();
+              batchDropdown.append(
+                "<option selected disabled>Select Batch Name</option>"
+              );
+              $.each(data.batch_names, function (index, batch_name) {
+                batchDropdown.append(
+                  '<option value="' +
+                    batch_name +
+                    '">' +
+                    batch_name +
+                    "</option>"
+                );
+              });
+            },
+          });
+        });
+
+        $("#batch-name").change(function () {
+          var batchName = $(this).val();
+          $.ajax({
+            url: '{% url "get_subject_names" %}',
+            data: {
+              batch_name: batchName,
+            },
+            success: function (data) {
+              var subjectDropdown = $("#subject");
+              subjectDropdown.empty();
+              subjectDropdown.append(
+                "<option selected disabled>Select Subject Name</option>"
+              );
+              $.each(data.subject_names, function (index, subject_name) {
+                subjectDropdown.append(
+                  '<option value="' +
+                    subject_name[1] +
+                    '">' +
+                    `(${subject_name[1]}) ${subject_name[0]}` +
+                    "</option>"
+                );
+              });
+            },
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="sideBarHeader">
+        <img src="https://media.licdn.com/dms/image/D560BAQEd_OgvmU6R7g/company-logo_200_200/0/1706011375138?e=2147483647&v=beta&t=3GqcZkhysmg649PBAe8H8f4kAzzL-Q9VbXwlYOCrnzk" alt="Kristu Jayanti College Logo" />
+        <h1>EPB</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Dashboard</a></li>
+      </ul>
+    </div>
+
+    <div class="header">
+      <img
+        src="https://seeklogo.com/images/K/kristu-jayanti-college-logo-32BF7E7E3A-seeklogo.com.png"
+        alt="Kristu Jayanti College Logo"
+      />
+      <h1>KRISTU JAYANTI COLLEGE (Autonomous)</h1>
+    </div>
+
+    <div class="content-container">
+      <div class="content">
+        <div class="form-container">
+          <form
+            method="post"
+            enctype="multipart/form-data"
+            action="{% url 'report' %}"
+          >
+            {% csrf_token %}
+            <div class="input-container">
+              <label for="report-name"><h3>REPORT NAME : </h3></label>
+              <select id="report-name" name="report_name">
+                <option selected disabled>Select Report Name</option>
+                {% for r_name in reports %}
+                <option value="{{ r_name }}">{{ r_name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="filter-area">
+              <h2><b>APPLY FILTERS</b></h2><br>
+              <div class="content1">
+                <div class="form-group">
+                  <label for="batch-name"><b>Batch Name : </b><br></label>
+                  <select id="batch-name" name="batch_name">
+                    <option selected disabled>Select Batch Name</option>
+                  </select><br><br>
+                </div>
+                <div class="form-group">
+                  <label for="subject"><b>Subject Name : </b><br></label>
+                  <select id="subject" name="subject">
+                    <option selected disabled>Select Subject Name</option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit" class="filter-button"><b>FILTER</b></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
