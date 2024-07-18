@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtered Data</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        h2 {
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .content-container {
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 2px solid black;
+            position: relative; /* Ensure relative positioning for absolute positioning */
+        }
+
+        .print-button {
+            background-color: #e74c3c; /* Red background */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 20px; /* Rounded corners */
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .print-button:hover {
+            background-color: #c0392b; /* Darker red on hover */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid black;
+            margin-top: 20px; /* Adjust spacing between button and table */
+            table-layout: fixed; /* Ensure table width is fixed */
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #bdc3c7;
+            text-align: left;
+            word-wrap: break-word; /* Allow text wrapping */
+        }
+
+        th {
+            background-color: #34495e;
+            color: white;
+        }
+
+        .wrap-text {
+            white-space: pre-line; /* Preserve white space and wrap text */
+        }
+        .highlight {
+            background-color: #ed3726; /* Light red background for F grade rows */
+        }
+    </style>
+</head>
+<body>
+<div class="content-container">
+    <h2>DATA</h2>
+    <button class="print-button" onclick="window.print()">Print</button>
+    <table>
+        <thead>
+            <tr>
+                <th>SUBJECT NAME : </th>
+                <th>SA MIN MARKS : </th>
+                <th>SA MAX MARKS : </th>
+                <th>AGGREGATE MIN MARKS : </th>
+                <th>AGGREGATE MAX MARKS : </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{subject_name}}</td>
+                <td>{{min_sa}}</td>
+                <td>{{max_sa}}</td>
+                <td>{{min_agg}}</td>
+                <td>{{max_agg}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th>Roll No</th>
+                <th class="wrap-text">Student Name</th>
+                <th class="wrap-text">Batch Name</th>
+                <th>FA (CIA For PG)</th>
+                <th>SA (ESE For PG)</th>
+                <th>Aggregate</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for data in report_data %}
+            <tr class="{% if data.obt_grade == 'F' or data.obt_grade == 'AB'  %}highlight{% endif %}">
+                <td>{{ data.roll_no }}</td>
+                <td class="wrap-text">{{ data.student_name }}</td>
+                <td class="wrap-text">{{ data.batch_name }}</td>
+                <td>{{ data.fa }}</td>
+                <td>{{ data.sa }}</td>
+                <td>{{ data.aggregate }}</td>
+                <td>{{ data.obt_grade }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
