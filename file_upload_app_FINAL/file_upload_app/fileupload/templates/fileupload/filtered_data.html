@@ -70,7 +70,6 @@
         .wrap-text {
             white-space: pre-line; /* Preserve white space and wrap text */
         }
-
         .highlight {
             background-color: #ed3726; /* Light red background for F grade rows */
         }
@@ -83,20 +82,20 @@
     <table>
         <thead>
             <tr>
-                <th>SUBJECT NAME :</th>
-                <th>SA MIN MARKS :</th>
-                <th>SA MAX MARKS :</th>
-                <th>AGGREGATE MIN MARKS :</th>
-                <th>AGGREGATE MAX MARKS :</th>
+                <th>SUBJECT NAME : </th>
+                <th>SA MIN MARKS : </th>
+                <th>SA MAX MARKS : </th>
+                <th>AGGREGATE MIN MARKS : </th>
+                <th>AGGREGATE MAX MARKS : </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>{{ subject_name }}</td>
-                <td>{{ min_sa }}</td>
-                <td>{{ max_sa }}</td>
-                <td>{{ min_agg }}</td>
-                <td>{{ max_agg }}</td>
+                <td>{{subject_name}}</td>
+                <td>{{min_sa}}</td>
+                <td>{{max_sa}}</td>
+                <td>{{min_agg}}</td>
+                <td>{{max_agg}}</td>
             </tr>
         </tbody>
     </table>
