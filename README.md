@@ -1,6 +1,6 @@
 # College_ProjectEPB
 
-This repository contains a Django project setup for a file upload application. Follow the instructions below to install Django, set up a virtual environment, create the project and app, and run the server locally.
+This repository contains a Django project setup. Follow the instructions below to install Django, set up a virtual environment, create the project and app, and run the server locally.
 
 ## Table of Contents
 - [Installation](#installation)
@@ -14,3 +14,17 @@ This repository contains a Django project setup for a file upload application. F
    To create a virtual environment named `venv`, run:
    ```bash
    python3 -m venv venv
+
+2. **Activate the Virtual Environment**
+   Activate the virtual environment based on your operating system:
+
+   Windows:
+   ```bash
+   venv\Scripts\activate 
+
+   macOS/Linux:
+   bash
+   Copy code
+
+   
+   
