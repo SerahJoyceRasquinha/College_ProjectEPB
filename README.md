@@ -12,19 +12,19 @@ This repository contains a Django project setup. Follow the instructions below t
 
 1. **Create a Virtual Environment**  
    To create a virtual environment named `venv`, run:
-   ```bash
+   ```
    python3 -m venv venv
 
 2. **Activate the Virtual Environment**
    Activate the virtual environment based on your operating system:
 
    Windows:
-   ```bash
+   ```
    venv\Scripts\activate 
-
+   ```
    macOS/Linux:
-   bash
-   Copy code
+   ```
+   
 
    
    
