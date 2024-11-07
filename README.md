@@ -3,7 +3,7 @@
 This repository contains a Django project setup. Follow the instructions below to install Django, set up a virtual environment, create the project and app, and run the server locally.
 
 ## Table of Contents
-- [Installation and Activating Virtual Environment](#installation)
+- [Installation and Activating Virtual Environment](#installation-and-activating-virtual-environment)
 - [Creating the Django Project and App](#creating-the-django-project-and-app)
 - [Running the App](#running-the-app)
 
